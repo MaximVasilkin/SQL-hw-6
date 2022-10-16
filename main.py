@@ -12,6 +12,8 @@ def get_publisher(DSN):
         target = int(target)
     else:
         publisher = Publisher.name
+    author = session.query(Publisher).filter(publisher == target).all()
+    print(author[0])
     res = session.query(Shop).join(Stock, Shop.id == Stock.id_shop) \
                              .join(Book, Book.id == Stock.id_book) \
                              .join(Publisher, Book.id_publisher == Publisher.id) \
